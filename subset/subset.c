@@ -30,6 +30,24 @@ void ft_print_tab(int *set, int size)
 	printf("%d\n", set[i]);
 }
 
+void ft_print_res(int *set, int size)
+{
+	int i = 0;
+	while (i < size - 1)
+	{
+		if (set[i] == 0)
+		{
+			printf("\n");
+			return ;
+		}
+		printf("%d ", set[i]);
+		i++;
+	}
+	if (set[i] != 0)
+		printf("%d", set[i]);
+	printf("\n");
+}
+
 void ft_print_big(int **tab)
 {
 	int i = 0;
@@ -87,28 +105,33 @@ int ft_len(int *t)
 	return (i);
 }
 
-void backtrack(int *set, int *ret, int i, int **tab)
+int ft_check(int *ret)
 {
-	// if (i == 2)
-		// ft_lst(tab, ret);
-	if (i == 3)
+	int i = 0;
+	int result = 0;
+	while (ret[i])
 	{
-		ft_lst(tab, ret);
+		result = result + ret[i];
+		i++;
+	}
+	return (result);
+}
+
+void backtrack(int *set, int *ret, int i, int target, int argc)
+{
+
+	// if (i == (sizeof(*set) / sizeof(int)))
+	if (i == argc -2)
+	{
+		if (ft_check(ret) == target)
+			ft_print_res(ret, argc -2);
 		return ;
 	}
-	// int x;
-	// while (i < 3)
-	// {
-		// x++;
-		// backtrack(set,ret, x, tab);
-		// x++;
 		ft_add(ret, set[i]);
 		
-		// i++;
-		backtrack(set,ret, i+1, tab);
+		backtrack(set,ret, i+1, target, argc);
 		ft_pop(ret);
-		// i++;
-		backtrack(set,ret, i+1, tab);
+		backtrack(set,ret, i+1, target, argc);
 	// }
 }
 
@@ -116,23 +139,41 @@ int main(int argc, char **argv)
 {
 	(void)argc;
 	(void)argv;
-	
-	int set[3] = {1,2,3};
-	// ft_print_tab(set, 3);
-	int *ret = malloc(sizeof(int) * (sizeof(set) / sizeof(int)));
-	// printf("%d\n",ft_power(2,3));
-	int **tab = malloc(sizeof(int *) * (sizeof(ft_power(2, (sizeof(set) / sizeof(int))))));
-	// ft_lst(tab, ret);
-	// ft_add(ret, 11);
-	// ft_add(ret, 12);
-	// ft_print_tab(ret, 3);
-	// ft_lst(tab, ret);
-	// ft_pop(ret);
-	// ft_lst(tab, ret);
-	// ft_print_big(tab);
-	backtrack(set, ret, 0, tab);
-	// backtrack(set, ret, 3, tab);
-	ft_print_big(tab);
-	// printf("%lu\n", sizeof(set) / sizeof(int));
-
+	if (argc >= 2)
+	{
+		// int set[3] = {1,2,3};
+		int *set = malloc(sizeof(int) * (argc - 2));
+		int i = 0;
+		while (i < argc-2)
+		{
+			set[i] = atoi(argv[i+2]);
+			// printf("%d\n", set[i]);
+			i++;
+		}
+		// ft_print_tab(set, 3);
+		int *ret = malloc(sizeof(int) * (argc - 2));
+		// i = 0;
+		// while (ret[i])
+		// {
+		// 	ret[i] = 9999;
+		// 	i++;
+		// }
+		// printf("%d\n",ft_power(2,3));
+		// int **tab = malloc(sizeof(int *) * (sizeof(ft_power(2, (sizeof(set) / sizeof(int))))));
+		// ft_lst(tab, ret);
+		// ft_add(ret, 11);
+		// ft_add(ret, 12);
+		// ft_print_tab(ret, 4);
+		// ft_lst(tab, ret);
+		// ft_pop(ret);
+		// ft_lst(tab, ret);
+		// ft_print_big(tab);
+		int target = atoi(argv[1]);
+		// printf("target:%d\n", target);
+		backtrack(set, ret, 0, target, argc);
+		// printf("set:%lu int:%lu", sizeof(*set) , sizeof(int));
+		// backtrack(set, ret, 3, tab);
+		// ft_print_big(tab);
+		// printf("%lu\n", sizeof(set) / sizeof(int));
+	}
 }
