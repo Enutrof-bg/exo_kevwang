@@ -33,10 +33,10 @@ int ft_check_diag(char **tab, int i, int j)
 	int x = i;
 	int y = j;
 	int d = 0;
-	// while (tab[x])
-	// {
-	// 	while (tab[x][y])
-	// 	{
+	while (tab[x])
+	{
+		while (tab[x][y])
+		{
 			if (tab[x][y] == 'Q')
 			{
 				while (d < size)
@@ -51,10 +51,12 @@ int ft_check_diag(char **tab, int i, int j)
 						return (0);
 					d++;
 				}
-		// 	}
-		// 	y++;
-		// }
-		// x++;
+				d = 0;
+			}
+			y++;
+		}
+		y = 0;
+		x++;
 	}
 	return (1);
 }
@@ -71,7 +73,7 @@ int ft_check_valid(char **tab)
 			{
 				return (0);
 			}
-			// else if (tab[i][j] == 'Q' && ft_check_diag(tab, i, j) == 0)
+			// if (tab[i][j] == 'Q' && ft_check_diag(tab, i, j) == 0)
 			// {
 			// 	return (0);
 			// }
@@ -83,8 +85,9 @@ int ft_check_valid(char **tab)
 	return (1);
 }
 
-void ft_map(char **tab, int i, int size)
+int ft_map(char **tab, int i, int size)
 {
+	int count = 0;
 	int p = 0;
 	if (i == size)
 	{
@@ -96,8 +99,9 @@ void ft_map(char **tab, int i, int size)
 				p++;
 			}
 			printf("\n");
+			return (1);
 		}
-		return ;
+		return (0);
 	}
 
 	for (int col = 0; col < size; col++)
@@ -105,10 +109,11 @@ void ft_map(char **tab, int i, int size)
 		if (ft_check_valid(tab) == 1)
 		{
 			tab[i][col] = 'Q';
-			ft_map(tab, i+1, size);
+			count = count + ft_map(tab, i+1, size);
 			tab[i][col] = '.';
 		}
 	}
+	return(count);
 }
 
 int main(int argc, char **argv)
@@ -143,7 +148,8 @@ int main(int argc, char **argv)
 		i = 0;
 		// tab[1][2] = 'Q';
 		// tab[3][0] = 'Q';
-		ft_map(tab, 0, size);
+		int test = ft_map(tab, 0, size);
+		printf("count:%d\n", test);
 		// while (tab[i])
 		// {
 		// 	printf("%s\n", tab[i]);
