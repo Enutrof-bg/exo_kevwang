@@ -27,6 +27,38 @@ int ft_check(char **tab, int i, int j)
 	return (1);
 }
 
+int ft_check_diag(char **tab, int i, int j)
+{
+	int size = strlen(tab[0]);
+	int x = i;
+	int y = j;
+	int d = 0;
+	// while (tab[x])
+	// {
+	// 	while (tab[x][y])
+	// 	{
+			if (tab[x][y] == 'Q')
+			{
+				while (d < size)
+				{
+					if (tab[x - d][y - d] == 'Q' && x-d >=0 && x-d<=3 && y-d >=0 && y-d <=3)
+						return (0);
+					if (tab[x + d][y - d] == 'Q' && x+d >=0 && x+d<=3 && y-d >=0 && y-d <=3)
+						return (0);
+					if (tab[x - d][y + d] == 'Q' && x-d >=0 && x-d<=3 && y+d >=0 && y+d <=3)
+						return (0);
+					if (tab[x + d][y + d] == 'Q' && x+d >=0 && x+d<=3 && y+d >=0 && y+d <=3)
+						return (0);
+					d++;
+				}
+		// 	}
+		// 	y++;
+		// }
+		// x++;
+	}
+	return (1);
+}
+
 int ft_check_valid(char **tab)
 {
 	int i = 0;
@@ -39,17 +71,22 @@ int ft_check_valid(char **tab)
 			{
 				return (0);
 			}
+			// else if (tab[i][j] == 'Q' && ft_check_diag(tab, i, j) == 0)
+			// {
+			// 	return (0);
+			// }
 			j++;
 		}
+		j = 0;
 		i++;
 	}
 	return (1);
 }
 
-void ft_map(char **tab, int i)
+void ft_map(char **tab, int i, int size)
 {
 	int p = 0;
-	if (i == 4)
+	if (i == size)
 	{
 		if (ft_check_valid(tab) == 1)
 		{
@@ -63,57 +100,61 @@ void ft_map(char **tab, int i)
 		return ;
 	}
 
-	for (int col = 0; col< 4; col++)
+	for (int col = 0; col < size; col++)
 	{
 		if (ft_check_valid(tab) == 1)
 		{
 			tab[i][col] = 'Q';
-			ft_map(tab, i+1);
+			ft_map(tab, i+1, size);
 			tab[i][col] = '.';
 		}
 	}
 }
 
-int main()
+int main(int argc, char **argv)
 {
-	int i = 0;
-	int j = 0;
-	char **tab = malloc(sizeof(char *) * 5);
-	while (i< 4)
+	if (argc == 2)
 	{
-		tab[i] = malloc(sizeof(char) * 5);
-		i++;
-	}
-
-	i = 0;
-
-	while (tab[i])
-	{
-		while (j < 4)
+		int i = 0;
+		int j = 0;
+		int size = atoi(argv[1]);
+		char **tab = malloc(sizeof(char *) * size);
+		while (i< size)
 		{
-			tab[i][j] = '.';
-			j++;
+			tab[i] = malloc(sizeof(char) * size);
+			i++;
 		}
-		tab[i][j] = '\0';
-		j = 0;
-		i++;
-	}
-	tab[i] = 0;
 
-	i = 0;
-	// tab[0][3] = 'Q';
-	// tab[2][1] = 'Q';
-	ft_map(tab, 0);
-	while (tab[i])
-	{
-		printf("%s\n", tab[i]);
-		i++;
+		i = 0;
+
+		while (tab[i])
+		{
+			while (j < size)
+			{
+				tab[i][j] = '.';
+				j++;
+			}
+			tab[i][j] = '\0';
+			j = 0;
+			i++;
+		}
+		tab[i] = 0;
+
+		i = 0;
+		// tab[1][2] = 'Q';
+		// tab[3][0] = 'Q';
+		ft_map(tab, 0, size);
+		// while (tab[i])
+		// {
+		// 	printf("%s\n", tab[i]);
+		// 	i++;
+		// }
+		// ft_map(tab, 0);
+		// if (ft_check_valid(tab) == 1)
+		// {
+		// 	printf("ok\n");
+		// }
+		// else
+		// 	printf("no\n");
 	}
-	ft_map(tab, 0);
-	// if (ft_check_valid(tab) == 1)
-	// {
-	// 	printf("ok\n");
-	// }
-	// else
-	// 	printf("no\n");
 }
