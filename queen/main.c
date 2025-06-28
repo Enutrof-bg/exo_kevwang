@@ -32,7 +32,7 @@ int ft_check_diag(char **tab, int i, int j)
 	int size = strlen(tab[0]);
 	int x = i;
 	int y = j;
-	int d = 0;
+	int d = 1;
 	while (tab[x])
 	{
 		while (tab[x][y])
@@ -41,17 +41,17 @@ int ft_check_diag(char **tab, int i, int j)
 			{
 				while (d < size)
 				{
-					if (tab[x - d][y - d] == 'Q' && x-d >=0 && x-d<=3 && y-d >=0 && y-d <=3)
+					if ((x - d >= 0) && (x - d < size) && y - d >=0 && (y - d < size) && tab[x - d][y - d] == 'Q')
 						return (0);
-					if (tab[x + d][y - d] == 'Q' && x+d >=0 && x+d<=3 && y-d >=0 && y-d <=3)
+					if ((x + d >= 0) && (x + d < size) && y - d >=0 && (y - d < size) && tab[x + d][y - d] == 'Q')
 						return (0);
-					if (tab[x - d][y + d] == 'Q' && x-d >=0 && x-d<=3 && y+d >=0 && y+d <=3)
+					if ((x - d >= 0) && (x - d < size) && y + d >=0 && (y + d < size) && tab[x - d][y + d] == 'Q')
 						return (0);
-					if (tab[x + d][y + d] == 'Q' && x+d >=0 && x+d<=3 && y+d >=0 && y+d <=3)
+					if ((x + d >= 0) && (x + d < size) && y + d >= 0 &&(y + d < size) && tab[x + d][y + d] == 'Q')
 						return (0);
 					d++;
 				}
-				d = 0;
+				d = 1;
 			}
 			y++;
 		}
@@ -73,10 +73,10 @@ int ft_check_valid(char **tab)
 			{
 				return (0);
 			}
-			// if (tab[i][j] == 'Q' && ft_check_diag(tab, i, j) == 0)
-			// {
-			// 	return (0);
-			// }
+			if (tab[i][j] == 'Q' && ft_check_diag(tab, i, j) == 0)
+			{
+				return (0);
+			}
 			j++;
 		}
 		j = 0;
@@ -88,17 +88,17 @@ int ft_check_valid(char **tab)
 int ft_map(char **tab, int i, int size)
 {
 	int count = 0;
-	int p = 0;
+	// int p = 0;
 	if (i == size)
 	{
 		if (ft_check_valid(tab) == 1)
 		{
-			while (tab[p])
-			{
-				printf("%s\n", tab[p]);
-				p++;
-			}
-			printf("\n");
+			// while (tab[p])
+			// {
+			// 	printf("%s\n", tab[p]);
+			// 	p++;
+			// }
+			// printf("\n");
 			return (1);
 		}
 		return (0);
@@ -124,15 +124,15 @@ int main(int argc, char **argv)
 		int j = 0;
 		int size = atoi(argv[1]);
 		char **tab = malloc(sizeof(char *) * size);
-		while (i< size)
+		while (i < size)
 		{
-			tab[i] = malloc(sizeof(char) * size);
+			tab[i] = malloc(sizeof(char) * size + 1);
 			i++;
 		}
 
 		i = 0;
 
-		while (tab[i])
+		while (i < size)
 		{
 			while (j < size)
 			{
@@ -146,8 +146,18 @@ int main(int argc, char **argv)
 		tab[i] = 0;
 
 		i = 0;
-		// tab[1][2] = 'Q';
-		// tab[3][0] = 'Q';
+		// tab[0][2] = 'Q';
+		// tab[1][0] = 'Q';
+		// tab[2][3] = 'Q';
+		// tab[3][1] = 'Q';
+
+		// int p = 0;
+		// while (tab[p])
+		// {
+		// 	printf("%s\n", tab[p]);
+		// 	p++;
+		// }
+		// printf("\n");
 		int test = ft_map(tab, 0, size);
 		printf("count:%d\n", test);
 		// while (tab[i])
