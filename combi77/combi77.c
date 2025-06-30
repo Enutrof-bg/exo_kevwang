@@ -99,6 +99,7 @@ void ft_map(int max, int sizemax, int i, t_list **node)
 		ft_add(node, i);
 		ft_map(max, sizemax, i+1, node);
 		ft_pop(node);
+		// ft_map(max, sizemax, i+1, node);
 		i++;
 	}
 }

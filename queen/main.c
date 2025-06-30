@@ -88,17 +88,17 @@ int ft_check_valid(char **tab)
 int ft_map(char **tab, int i, int size)
 {
 	int count = 0;
-	// int p = 0;
+	int p = 0;
 	if (i == size)
 	{
 		if (ft_check_valid(tab) == 1)
 		{
-			// while (tab[p])
-			// {
-			// 	printf("%s\n", tab[p]);
-			// 	p++;
-			// }
-			// printf("\n");
+			while (tab[p])
+			{
+				printf("%s\n", tab[p]);
+				p++;
+			}
+			printf("\n");
 			return (1);
 		}
 		return (0);
