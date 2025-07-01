@@ -13,7 +13,7 @@ void ft_mot(char *str)
 
 void ft_mot_pointeur(char **str)
 {
-	*str = "xyz";//on deference
+	*str = "xyz";//on deference en faisaint *str
 }
 
 void ft_mot_pointeur_2(char **str, char *new)
