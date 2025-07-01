@@ -142,16 +142,17 @@ int main(int argc, char **argv)
 	if (argc >= 2)
 	{
 		// int set[3] = {1,2,3};
-		int *set = malloc(sizeof(int) * (argc - 2));
+		int *set = malloc(sizeof(int) * (argc - 1));
 		int i = 0;
-		while (i < argc-2)
+		while (i < argc-1)
 		{
-			set[i] = atoi(argv[i+2]);
+			set[i] = atoi(argv[i+1]);
 			// printf("%d\n", set[i]);
 			i++;
 		}
-		// ft_print_tab(set, 3);
-		int *ret = malloc(sizeof(int) * (argc - 2));
+		ft_print_tab(set, argc - 1);
+		printf("len:%d\n", ft_len(set));
+		// int *ret = malloc(sizeof(int) * (argc - 2));
 		// i = 0;
 		// while (ret[i])
 		// {
@@ -168,9 +169,9 @@ int main(int argc, char **argv)
 		// ft_pop(ret);
 		// ft_lst(tab, ret);
 		// ft_print_big(tab);
-		int target = atoi(argv[1]);
+		// int target = atoi(argv[1]);
 		// printf("target:%d\n", target);
-		backtrack(set, ret, 0, target, argc);
+		// backtrack(set, ret, 0, target, argc);
 		// printf("set:%lu int:%lu", sizeof(*set) , sizeof(int));
 		// backtrack(set, ret, 3, tab);
 		// ft_print_big(tab);
