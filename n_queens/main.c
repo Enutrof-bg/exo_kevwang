@@ -110,7 +110,7 @@ void ft_map(char **tab, int i, int size)
 {
 	if (i == size)
 	{
-		if (ft_check_valid(tab) == 1)
+		if (ft_check_valid(tab) == 1 && size > 0)
 		{
 			ft_print_2(tab);
 			// ft_print(tab);
