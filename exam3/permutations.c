@@ -95,7 +95,7 @@ int ft_check(t_list *lst)
 		lst = lst->next;
 	}
 	str[i] = 0;
-
+	
 	int x = 0;
 	int y = 0;
 	while (x < i)
@@ -160,7 +160,8 @@ int main(int argc, char **argv)
 	// ft_add(&node, 1);
 	// ft_add(&node, 2);
 	// ft_add(&node, 3);
-
+	// ft_pop(&node);
+	// ft_pop(&node);
 	// ft_pop(&node);
 	// ft_pop(&node);
 	// ft_print(node);
