@@ -94,7 +94,7 @@ int ft_check(t_list *lst)
 		i++;
 		lst = lst->next;
 	}
-	str[i] = 0;
+	str[i] = '\0';
 
 	int x = 0;
 	int y = 0;
