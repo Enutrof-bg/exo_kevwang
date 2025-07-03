@@ -72,13 +72,13 @@ void ft_print(t_list *lst)
 	{
 		int size = ft_size(lst);
 		int i = 0;
-		while (i < size - 1)
+		while (i < size)
 		{
 			write(1, &lst->val, 1);
 			lst = lst->next;
 			i++;
 		}
-		write(1, &lst->val, 1);
+		// write(1, &lst->val, 1);
 		write(1, "\n", 1);
 	}
 }
@@ -95,7 +95,7 @@ int ft_check(t_list *lst)
 		lst = lst->next;
 	}
 	str[i] = 0;
-	
+
 	int x = 0;
 	int y = 0;
 	while (x < i)
