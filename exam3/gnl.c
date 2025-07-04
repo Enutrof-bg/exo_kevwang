@@ -33,6 +33,8 @@ int ft_check(char *str, char c)
 	return 1;
 }
 
+//exemple: "Bonjour\n123456\nHello"
+//ft_return() return "Bonjour\n"
 char *ft_return(char *str)
 {
 	int i = 0;
@@ -53,6 +55,8 @@ char *ft_return(char *str)
 	return new;
 }
 
+//exemple: "Bonjour\n123456\nHello"
+//ft_reste() return "123456\nHello"
 char *ft_reste(char *str)
 {
 	int i = 0;
@@ -90,6 +94,9 @@ char *get_next_line(int fd)
 			return NULL;
 		str[0] = '\0';
 	}
+
+	//lire le contenu de fd en boucle et rajouter buff dans str grace a ft_strjoin
+	//et stop quand un '\n' est vu dans str avec ft_check() et break ;
 	int readfd = read(fd, buff, BUFFER_SIZE);
 	while (readfd > 0)
 	{
@@ -103,20 +110,34 @@ char *get_next_line(int fd)
 			break ;
 		readfd = read(fd, buff, BUFFER_SIZE);
 	}
+
+	//si readfd == 0 alors plus rien a lire dans fd
+	// et si str[0] == '\0' // str est vide, alors tout a été affiché
+	//on return NULL quand il n'y a plus rien a lire ni a afficher
 	if (readfd == 0 && str[0] == '\0')
 	{
 		return (free(str), NULL);
 	}
+
+	//permet de recuperer les caracteres
+	//jusqu'au premier '\n' inclue,  ou '\0' si il n y a pas de '\n'
+	//et return cette chaine apres
 	strreturn = ft_return(str);
 	if (!strreturn)
-			return NULL;
+		return NULL;
+
+	//met a jour str
+	//un fois la chaine recuperé grace a ft_return()
+	//on met a jour str avec ft_reste() pour obtenir une chaine a partir du premier '\n' non inclue
+	//jusqu a '\0' la fin de la chaine
 	temp = ft_reste(str);
 	if (!temp)
-			return NULL;
+		return NULL;
 	free(str);
 	str = temp;
 	return (strreturn);
 }
+
 /*
 int main()
 {
