@@ -9,7 +9,8 @@ typedef struct s_list
 t_list *ft_lst(char val)
 {
 	t_list *new = malloc(sizeof(t_list));
-
+	// struct s_list *new = malloc(sizeof(t_list));
+	
 	new->val = val;
 	new->next = NULL;
 
