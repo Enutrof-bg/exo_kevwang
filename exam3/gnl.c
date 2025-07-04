@@ -3,6 +3,8 @@
 char *ft_strjoin(char *s1, char *s2)
 {
 	char *new = malloc(sizeof(char) * (strlen(s1) + (strlen(s2) + 1)));
+	if (!new)
+		return NULL;
 	int i = 0;
 	int j = 0;
 	while (s1[i])
@@ -39,6 +41,8 @@ char *ft_return(char *str)
 	if (str[i] == '\n')
 		i++;
 	char *new = malloc(sizeof(char) * i + 1);
+	if (!new)
+		return NULL;
 	int j = 0;
 	while (j < i)
 	{
@@ -60,6 +64,8 @@ char *ft_reste(char *str)
 	while (str[i + j] != '\0')
 		j++;
 	char *new = malloc(sizeof(char) * j + 1);
+	if (!new)
+		return NULL;
 	int n = 0;
 	while (str[i +n])
 	{
@@ -79,8 +85,9 @@ char *get_next_line(int fd)
 
 	if (!str)
 	{
-		str = malloc(sizeof(char) * 70000);
-
+		str = malloc(sizeof(char) * 1);
+		if (!str)
+			return NULL;
 		str[0] = '\0';
 	}
 	int readfd = read(fd, buff, BUFFER_SIZE);
@@ -88,6 +95,8 @@ char *get_next_line(int fd)
 	{
 		buff[readfd] = 0;
 		temp = ft_strjoin(str, buff);
+		if (!temp)
+			return NULL;
 		free(str);
 		str = temp;
 		if (ft_check(str, '\n') == 0)
@@ -99,12 +108,16 @@ char *get_next_line(int fd)
 		return (free(str), NULL);
 	}
 	strreturn = ft_return(str);
+	if (!strreturn)
+			return NULL;
 	temp = ft_reste(str);
+	if (!temp)
+			return NULL;
 	free(str);
 	str = temp;
 	return (strreturn);
 }
-
+/*
 int main()
 {
 	int fd = open("text.txt", O_RDONLY);
@@ -115,5 +128,5 @@ int main()
 		free(test);
 		test = get_next_line(fd);
 	}
-
 }
+*/
