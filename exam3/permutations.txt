@@ -7,52 +7,55 @@ affichez toutes les combinaisons possibles et affichez dans l'ordre alphabetique
 
 un argument avec des carateres en doublons ne sera pas a géré(ex:abccd ne sera pas testé)
 
+
+
+
 Exemples bons:
-f6r12s16% ./a.out a 
-a
+f6r12s16% ./a.out a | cat -e
+a$
 
-f6r12s16% ./a.out ab 
-ab
-ba
+f6r12s16% ./a.out ab | cat -e
+ab$
+ba$
 
-f6r12s16% ./a.out abc
-abc
-acb
-bac
-bca
-cab
-cba
+f6r12s16% ./a.out abc | cat -e
+abc$
+acb$
+bac$
+bca$
+cab$
+cba$
 
-f6r12s16% ./a.out cba 
-abc
-acb
-bac
-bca
-cab
-cba
+f6r12s16% ./a.out cba | cat -e
+abc$
+acb$
+bac$
+bca$
+cab$
+cba$
 
-f6r12s16% ./a.out abcd
-abcd
-abdc
-acbd
-acdb
-adbc
-adcb
-bacd
-badc
-bcad
-bcda
-bdac
-bdca
-cabd
-cadb
-cbad
-cbda
-cdab
-cdba
-dabc
-dacb
-dbac
-dbca
-dcab
-dcba
+f6r12s16% ./a.out abcd | cat -e
+abcd$
+abdc$
+acbd$
+acdb$
+adbc$
+adcb$
+bacd$
+badc$
+bcad$
+bcda$
+bdac$
+bdca$
+cabd$
+cadb$
+cbad$
+cbda$
+cdab$
+cdba$
+dabc$
+dacb$
+dbac$
+dbca$
+dcab$
+dcba$

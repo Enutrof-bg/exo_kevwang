@@ -9,6 +9,8 @@ donnez toutes les combinaisons possibles qui en additionant donne la valeur cibl
 
 donnez la combinaison dans l'ordre par rapport a l'ensemble de valeur
 
+
+
 Exemple pas bon:
 /a.out 5 1 2 3 4 5 | cat -e
 4 1$
