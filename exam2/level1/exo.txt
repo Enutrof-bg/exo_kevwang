@@ -1,0 +1,384 @@
+//////////////////////////////////////////////////////////////////
+Level1
+
+///////////////////////////////////////////////////////////
+
+Assignment name  : ft_swap
+Expected files   : ft_swap.c
+Allowed functions: 
+--------------------------------------------------------------------------------
+
+Écrire une fonction qui échange le contenu de deux entiers dont les adresses
+sont passées en paramêtres.
+
+Elle devra être prototypée de la façon suivante :
+
+void    ft_swap(int *a, int *b);
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////
+
+Assignment name  : rot_13
+Expected files   : rot_13.c
+Allowed functions: write
+--------------------------------------------------------------------------------
+
+Écrire un programme nommé rotone, qui prend en paramètre une chaîne de
+caractères, et qui affiche cette chaîne en remplaçant chaque caractère
+alphabétique par le caractère situé 13 caractères plus loin dans l'ordre
+alphabétique.
+
+'z' devient 'm' et 'Z' devient 'M'. Les majuscules restent des majuscules, les
+minuscules restent des minuscules.
+
+L'affichage se termine toujours par un retour à la ligne.
+
+Si le nombre de paramètres transmis est différent de 1, le programme affiche
+'\n'.
+
+Exemple:
+
+$>./rot_13 "abc"
+nop
+$>./rot_13 "My horse is Amazing." | cat -e
+Zl ubefr vf Nznmvat.$
+$>./rot_13 "AkjhZ zLKIJz , 23y " | cat -e
+NxwuM mYXVWm , 23l $
+$>./rot_13 | cat -e
+$
+$>
+$>./rot_13 "" | cat -e
+$
+$>
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////
+
+Level2
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////
+Assignment name  : inter
+Expected files   : inter.c
+Allowed functions: write
+--------------------------------------------------------------------------------
+
+Écrire un programme qui prend en paramètres deux chaînes de caractères et qui
+affiche sans doublon les caractères communs aux deux chaînes.
+
+L'affichage se fera dans l'ordre d'apparition dans la premiere chaîne.
+L'affichage doit être suivi d'un '\n'.
+
+Si le nombre de paramètres transmis est différent de 2, le programme affiche
+'\n'.
+
+Exemples:
+$>./inter "padinton" "paqefwtdjetyiytjneytjoeyjnejeyj" | cat -e
+padinto$
+$>./inter ddf6vewg64f gtwthgdwthdwfteewhrtag6h4ffdhsd | cat -e
+df6ewg4$
+$>./inter "rien" "cette phrase ne cache rien" | cat -e
+rien$
+$>./inter | cat -e
+$
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////
+
+Assignment name  : print_bits
+Expected files   : print_bits.c
+Allowed functions: write
+--------------------------------------------------------------------------------
+
+Écrire une fonction qui prend un octet et l'affiche en binaire, sans newline à la fin.
+
+Votre fonction doit étre déclarée comme suit:
+
+void    print_bits(unsigned char octet);
+
+Exemple, si on lui passe 2, elle affiche "00000010"
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////
+
+Assignment name  : union
+Expected files   : union.c
+Allowed functions: write
+--------------------------------------------------------------------------------
+
+Ècrire un programme nommé union qui prend en paramètre deux chaînes de
+caractères et qui affiche, sans doublon, les caractères qui apparaissent dans
+l'une ou dans l'autre.
+
+L'affichage se fera dans l'ordre d'apparition dans la ligne de commande.
+
+L'affichage doit etre suivi d'un retour à la ligne.
+
+Si le nombre de paramètres transmis est différent de 2, le programme affiche
+\n.
+
+Exemple:
+
+$>./union zpadinton "paqefwtdjetyiytjneytjoeyjnejeyj" | cat -e
+zpadintoqefwjy$
+$>./union ddf6vewg64f gtwthgdwthdwfteewhrtag6h4ffdhsd | cat -e
+df6vewg4thras$
+$>./union "rien" "cette phrase ne cache rien" | cat -e
+rienct phas$
+$>./union | cat -e
+$
+$>
+$>./union "rien" | cat -e
+$
+$>
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////
+
+Level3
+
+
+//////////////////////////////////////////////////////////////////////
+
+Assignment name  : ft_range
+Expected files   : ft_range.c
+Allowed functions: malloc
+--------------------------------------------------------------------------------
+
+Écrire la fonction suivante :
+
+int     *ft_range(int start, int end);
+
+Cette fonction doit allouer avec malloc() un tableau d'ints, le remplir avec
+les valeurs (consécutives) démarrant à start et finissant à end (start et end
+inclus !), et renvoyer un pointeur vers la première valeur du tableau.
+
+Exemples:
+
+- Avec (1, 3) vous devrez renvoyer un tableau contenant 1, 2 et 3.
+- Avec (-1, 2) vous devrez renvoyer un tableau contenant -1, 0, 1 et 2.
+- Avec (0, 0) vous devrez renvoyer un tableau contenant 0.
+- Avec (0, -3) vous devrez renvoyer un tableau contenant 0, -1, -2 et -3.
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////
+
+Assignment name  : ft_list_size
+Expected files   : ft_list_size.c, ft_list.h
+Allowed functions: 
+--------------------------------------------------------------------------------
+
+Écrire une fonction qui renvoie le nombre d'éléments dans la liste chaînée
+passée en paramètre.
+
+Elle devra être prototypée de la façon suivante:
+
+int ft_list_size(t_list *begin_list);
+
+Vous devez utiliser la structure suivante, et la rendre dans un fichier
+ft_list.h:
+
+typedef struct    s_list
+{
+    struct s_list *next;
+    void          *data;
+}                 t_list;
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////
+Assignment name  : print_hex
+Expected files   : print_hex.c
+Allowed functions: write
+--------------------------------------------------------------------------------
+
+Écrire un programme qui prend un entier positif ou nul exprimé en base 10, et l'affiche en base 16 (avec des minuscules) suivi d'un newline.
+
+Si le nombre de paramêtres n'est pas 1, le programme affiche un newline.
+
+Exemples:
+
+$> ./print_hex "10" | cat -e
+a$
+$> ./print_hex "255" | cat -e
+ff$
+$> ./print_hex "5156454" | cat -e
+4eae66$
+$> ./print_hex | cat -e
+$
+
+
+
+//////////////////////////////////////////////////////////////////
+
+Level 4
+
+
+//////////////////////////////////////////////////////////////////////
+
+Assignment name  : ft_list_foreach
+Expected files   : ft_list_foreach.c, ft_list.h
+Allowed functions: 
+--------------------------------------------------------------------------------
+
+Écrire une fonction qui prend une liste et un pointeur sur fonction en
+paramètres, et applique la fonction à chaque élément de la liste.
+
+Elle devra être prototypée de la façon suivante:
+
+void    ft_list_foreach(t_list *begin_list, void (*f)(void *));
+
+La fonction pointée par f sera utilisée comme suit:
+
+(*f)(list_ptr->data);
+
+Vous devez utiliser la structure suivante, et la rendre dans un fichier
+ft_list.h:
+
+typedef struct    s_list
+{
+    struct s_list *next;
+    void          *data;
+}                 t_list;
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////
+Assignment name  : ft_split
+Expected files   : ft_split.c
+Allowed functions: malloc
+--------------------------------------------------------------------------------
+
+Écrire une fonction qui prend en paramètre une chaîne de caractères et la
+découpe en mots, qui seront retournés sous la forme d'un tableau de chaînes
+terminé par NULL.
+
+On appelle "mot" une portion de chaîne de caractères délimitée soit par des
+espaces, des retours à la ligne et/ou des tabulations, soit par le début / fin
+de la chaîne.
+
+Votre fonction devra être prototypée de la façon suivante :
+
+char    **ft_split(char *str);
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////
+Assignment name  : ft_itoa
+Expected files   : ft_itoa.c
+Allowed functions: malloc
+--------------------------------------------------------------------------------
+
+Écrire une fonction qui prend un int et le convertit en chaîne terminée par un
+caractère nul. Cette fonction retourne le résultat en tant qu'un tableau de
+char que vous devez allouer.
+
+Votre fonction sera déclarée comme suit:
+
+char	*ft_itoa(int nbr);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Assignment name  : rev_wstr
+Expected files   : rev_wstr.c
+Allowed functions: write, malloc, free
+--------------------------------------------------------------------------------
+
+Écrire un programme qui prend en paramètre une chaîne de caractères, et qui
+affiche cette chaîne en inversant ses mots.
+
+On appelle "mot" une portion de chaîne de caractères délimitée soit par des
+espaces et/ou des tabulations, soit par le début / fin de la chaîne.
+
+Si le nombre de paramètres est différent de 1, le programme devra afficher
+'\n'.
+
+Dans les paramètres qui seront testés, il n'y aura pas d'espaces "en trop"
+(comprendre par là qu'il n'y aura pas d'espaces au début ou à la fin de la
+chaîne, et que les mots seront toujours séparés par exactement un espace).
+
+Exemple:
+
+$> ./rev_wstr "le temps du mepris precede celui de l'indifference" | cat -e
+l'indifference de celui precede mepris du temps le$
+$> ./rev_wstr "abcdefghijklm"
+abcdefghijklm
+$> ./rev_wstr "il contempla le mont" | cat -e
+mont le contempla il$
+$> ./rev_wstr | cat -e
+$
+$>
