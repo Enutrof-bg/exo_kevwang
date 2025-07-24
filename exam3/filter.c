@@ -44,6 +44,8 @@ int main(int argc, char **argv)
 		char *buff;
 		char *temp;
 		str = malloc(70000);
+		if (!str)
+			perror("error:");
 		buff = malloc(70000);
 
 		readfd = read(0, buff, 10);
