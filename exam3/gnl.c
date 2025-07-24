@@ -20,7 +20,7 @@ char *ft_strjoin(char *s1, char *s2)
 	new[i+j] = 0;
 	return (new);
 }
-
+q
 int ft_check(char *str, char c)
 {
 	int i = 0;
