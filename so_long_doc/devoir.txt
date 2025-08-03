@@ -25,4 +25,6 @@ Recuperer les touches de clavier et executer une fonction en fonction de la touc
 
 Faire deplacer le joueur(P) avec mlx_put_image_to_window() dans la bonne direction en fonction de la touche pressée et en mettant a jour la map
 
-Recuperer le nombre de deplacement effectué
+La sortie est accessible uniquement quand tout les collectibles ont été récuperé
+
+Recuperer le nombre de deplacement effectué et l'affiché dans le terminal
