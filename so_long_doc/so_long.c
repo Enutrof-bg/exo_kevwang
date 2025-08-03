@@ -16,6 +16,13 @@ int ft_close(t_data *data)
 	return (0);
 }
 
+int on_key_press(int keysim, t_data *data)
+{
+	(void)data;
+	printf("key:%d\n", keysim);
+	return (1);
+}
+
 int main(void)
 {
 	// ========== ÉTAPE 1: ALLOCATION MÉMOIRE ==========
@@ -72,7 +79,7 @@ int main(void)
 	// ========== ÉTAPE 6: GESTION DES ÉVÉNEMENTS ==========
 	// Gérer les événements de la fenêtre (fermeture, touches, etc.)
 	mlx_hook(data->win_ptr, DestroyNotify, 0, ft_close, data);
-	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, mlx_key_hook, data->mlx_ptr);
+	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, on_key_press, data);
 
 	// ========== ÉTAPE 7: BOUCLE D'ÉVÉNEMENTS ==========
 	// Démarrer la boucle d'événements (le programme reste ouvert)
