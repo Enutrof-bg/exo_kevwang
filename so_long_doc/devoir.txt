@@ -1,0 +1,28 @@
+Verification de la map:
+	verifier le nom du fichier
+	ouvir et lire le ficher en entier  et stocker dans un char * puis split puis fermer le fichier
+	verifier que le map commence par un 1 et se termine par un 1
+	verifier que la map est un rectangle
+	verifier que la map est entouré de 1
+	verifier qu'il y a que des 0,1,P,E et C dans la map
+	verifier qu'il y a strictement un P, un E, et minimum un C
+	verifier qu'il y a un chemin possible en recoltant tout les collectible puis en atteignant la sortie
+
+Trouver des images pour :
+	le joueur(P)
+	les collectibles(C)
+	la sortie(E)
+	les murs(1)
+	le sol(0)
+puis les convertir en fichier xpm (taille 32*32 ou 64*64)
+toutes les images doivent avoir la meme resolution
+
+Charger chaque image avec la fonction mlx_xpm_file_to_image()
+
+Puis parcourir la map et afficher une image differente grace a la fonction mlx_put_image_to_window()
+
+Recuperer les touches de clavier et executer une fonction en fonction de la touche pressée
+
+Faire deplacer le joueur(P) avec mlx_put_image_to_window() dans la bonne direction en fonction de la touche pressée et en mettant a jour la map
+
+Recuperer le nombre de deplacement effectué

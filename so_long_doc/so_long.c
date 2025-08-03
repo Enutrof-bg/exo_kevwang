@@ -1,9 +1,21 @@
 #include "so_long.h"
 
+//cc so_long.c -Lminilibx-linux -lmlx -lXext -lX11
 /*
 ** Fonction principale du programme So Long
 ** Initialise MLX, crée une fenêtre et affiche une image
 */
+
+int ft_close(t_data *data)
+{
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	mlx_destroy_display(data->mlx_ptr);
+	free(data->mlx_ptr);
+	free(data);
+	exit(0);
+	return (0);
+}
+
 int main(void)
 {
 	// ========== ÉTAPE 1: ALLOCATION MÉMOIRE ==========
@@ -59,7 +71,7 @@ int main(void)
 
 	// ========== ÉTAPE 6: GESTION DES ÉVÉNEMENTS ==========
 	// Gérer les événements de la fenêtre (fermeture, touches, etc.)
-	mlx_hook(data->win_ptr, DestroyNotify, 0, mlx_destroy_window, data->win_ptr);
+	mlx_hook(data->win_ptr, DestroyNotify, 0, ft_close, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, mlx_key_hook, data->mlx_ptr);
 
 	// ========== ÉTAPE 7: BOUCLE D'ÉVÉNEMENTS ==========
