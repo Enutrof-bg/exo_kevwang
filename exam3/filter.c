@@ -43,6 +43,7 @@ int main(int argc, char **argv)
 		int readfd;
 		char *buff;
 		char *temp;
+		
 		str = malloc(70000);
 		if (!str)
 			perror("error:");

@@ -117,7 +117,7 @@ void ft_map(char *str, int size, t_list *node, int i)
 {
 	if (i == size)
 	{
-		if (ft_check(node) == 1)
+		// if (ft_check(node) == 1)
 			ft_print(node);
 		return ;
 	}

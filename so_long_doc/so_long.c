@@ -20,6 +20,10 @@ int on_key_press(int keysim, t_data *data)
 {
 	(void)data;
 	printf("key:%d\n", keysim);
+	if (keysim == 65307)
+		printf("caca");
+	if (keysim == 'a')
+		printf("prout");
 	return (1);
 }
 

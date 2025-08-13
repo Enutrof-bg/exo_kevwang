@@ -97,17 +97,17 @@ void ft_map(char **tab, int size, int i)
 	{
 		if (ft_check(tab, size) == 1)
 		{
-			// ft_print(tab);
-			ft_print_2(tab, size);
+			ft_print(tab);
+			// ft_print_2(tab, size);
 		}
 		return ;
 	}
 
 	for (int col = 0; col < size; col++)
 	{
-		tab[col][i] = 'Q';
+		tab[i][col] = 'Q';
 		ft_map(tab, size, i+1);
-		tab[col][i] = '.';
+		tab[i][col] = '.';
 	}
 }
 
