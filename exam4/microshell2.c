@@ -60,26 +60,36 @@ int ft_exec(char **argv, int i, char **env)
 			close(fd[0]);
 		}	
 		argv[i] = 0;
-		execve(argv[0], argv, env);
+		if (execve(argv[0], argv, env) == -1)
+		{
+
+			ft_err("error: cannot execute ");
+			ft_err(argv[0]);
+			ft_err("\n");
+		}
 		exit(0);
 	}
 
 	if (pip == 0)
 	{
 		dup2(fd[0], 0);
-		close(fd[1]);
-		close(fd[0]);
+		// close(fd[1]);
+		// close(fd[0]);
 	}
+	close(fd[1]);
+	close(fd[0]);
 	waitpid(id1, &status, 0);
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
 	return (0);
 }
 
 int ft_cd(char **argv, int i)
 {
 	if (i != 2)
-		ft_err("arg error\n");
+		ft_err("error: cd: bad arguments\n");
 	else if (chdir(argv[i]) == -1)
-		ft_err("path error\n");
+		ft_err("error: cd: cannot change directory to path_to_change\n");
 	return (0);
 }
 
