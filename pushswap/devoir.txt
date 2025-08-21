@@ -1,0 +1,110 @@
+⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 0%
+▱▱▱▱▱▱▱▱▱▱▱▱▱ 0%
+□□□□□□□□□□□□□ 0%
+
+1/ PARSING 
+Gerer ./push_swap "5 4 9 6 1" et ./push_swap 5 4 9 6 1
+Parsing:
+	Check int
+	Check doublon
+	Check int_min / int_max
+
+Verifier les conditons de Parsing et Rajouter chaque argument a la listA
+
+
+
+void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstadd_front(t_list **lst, t_list *new);
+
+Fonction print pour avoir un visuel sur les deux listes, ca va etre tres utile pour tester
+void	ft_lstprint(t_list *lst)
+void	ft_lstprint_two(t_list *lst, t_list *lst2)
+
+
+⣦⣀⣀⣀⣀⣀⣀⣀⣀⣀ 5%
+▰▱▱▱▱▱▱▱▱▱▱▱▱ 5% 
+◧□□□□□□□□□ 5%
+
+
+
+
+
+
+
+
+2/ INSTRUCTIONS 
+
+Creer les fonctions d'instructions:
+(Proteger correctement dans le cas ou les listes sont vides)
+Et afficher l'instruction effectué sur le terminal
+
+Echanger les deux premiers elements de la liste
+Ne fait rien si il y a 0 ou 1 element dans la liste
+	sa sb ss
+void	ft_swap_a(t_list **lst);
+void	ft_swap_b(t_list **lst);
+void	ft_swap_ss(t_list **lst, t_list **lst2);
+
+Le premier element devient le dernier
+Ne fait rien si la liste est vide
+	ra rb rr
+void	ft_rotate_a(t_list **lst);
+void	ft_rotate_b(t_list **lst);
+void	ft_rotate_rr(t_list **lst2);
+
+Le dernier element devient le premier
+Ne fait rien si la liste est vide
+	rra rrb rrr
+void	ft_reverse_rotate_a(t_list **lst);
+void	ft_reverse_rotate_b(t_list **lst);
+void	ft_reverse_rotate_rrr(t_list **lst, t_list **lst2);
+
+Le premier element de liste1 devient le premier element de liste2
+Ne fait rien si liste1 est vide
+	pa pb
+void	ft_push_a(t_list **lstA, t_list **lstB);
+void	ft_push_b(t_list **lstA, t_list **lstB);
+
+
+⣿⣿⣿⣀⣀⣀⣀⣀⣀⣀ 30%
+▰▰▰▱▱▱▱▱▱▱ 30%
+■■■□□□□□□□ 30%
+
+
+
+
+
+
+
+
+
+
+
+
+3/ALGORITHME 
+
+Verifier dans un premier temps si la liste est deja triée de base
+	Ne faire aucune instructions et terminer le programme
+
+Cas ou il y 1, 2 ou 3 valeur:
+	1 valeur  : deja trié, ne rien faire
+	2 valeurs : verifier et trié avec un swap si necessaire
+	3 valeurs : verifier et trié 5 combinaisons possibles avec 3 valeurs
+
+
+
+
+
+
+
+
+
+
+
+
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ 100%
+▰▰▰▰▰▰▰▰▰▰ 100%
+■■■■■■■■■■ 100%
+
+
+4/FETE
