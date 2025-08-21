@@ -1,0 +1,155 @@
+# COURS : ALGORITHME PUSH SWAP - ANALYSE ÉTAPE PAR ÉTAPE
+
+## 1. INTRODUCTION
+
+Push Swap est un projet qui consiste à trier une pile d'entiers en utilisant un ensemble limité d'opérations et deux piles (stack A et stack B). L'objectif est de minimiser le nombre d'opérations nécessaires pour trier complètement la pile A.
+
+## 2. STRUCTURE DES DONNÉES
+
+### Structure de liste chaînée doublement liée :
+```c
+typedef struct s_list
+{
+    int             content;     // Valeur de l'élément
+    int             soluce;      // Code de solution optimale
+    int             target;      // Position cible pour cet élément
+    long            steps;       // Nombre d'étapes calculées
+    struct s_list   *prev;       // Élément précédent
+    struct s_list   *next;       // Élément suivant
+} t_list;
+```
+
+## 3. OPÉRATIONS DISPONIBLES
+
+### Opérations de base :
+- **sa/sb** : swap - échange les 2 premiers éléments d'une pile
+- **pa/pb** : push - déplace le premier élément d'une pile vers l'autre
+- **ra/rb** : rotate - décale tous les éléments vers le haut (premier devient dernier)
+- **rra/rrb** : reverse rotate - décale tous les éléments vers le bas (dernier devient premier)
+- **ss/rr/rrr** : opérations simultanées sur les deux piles
+
+## 4. ALGORITHME PRINCIPAL - ANALYSE ÉTAPE PAR ÉTAPE
+
+### PHASE 1 : VALIDATION ET PRÉPARATION
+```
+main() → Validation des arguments → Création de la pile A
+```
+
+### PHASE 2 : STRATÉGIE DE TRI SELON LA TAILLE
+
+#### A. Pour 2 éléments (ft_sort_2value)
+- Simple comparaison et swap si nécessaire
+- Complexité : O(1)
+
+#### B. Pour 3 éléments (ft_sort_3value)
+- Algorithme optimisé avec 6 cas possibles
+- Maximum 2 opérations nécessaires
+- Tous les cas sont hardcodés pour l'efficacité
+
+#### C. Pour 4+ éléments (ft_sort_jsp → ft_calculate_steps_lst)
+L'algorithme se divise en 3 étapes principales :
+
+## 5. LES TROIS ÉTAPES DE L'ALGORITHME PRINCIPAL
+
+### ÉTAPE 1 : RÉDUCTION À 3 ÉLÉMENTS (ft_first_step)
+
+**Objectif** : Garder seulement 3 éléments dans la pile A, pousser le reste vers B
+
+**Processus** :
+1. **Tant que pile A > 3 éléments :**
+   - Pour chaque élément de A, calculer le coût de le déplacer vers B
+   - Trouver l'élément avec le coût minimal
+   - Exécuter la solution optimale pour cet élément
+   - Pousser l'élément vers la pile B
+
+2. **Calcul du coût (ft_calculate_steps_node)** :
+   - Trouve la position cible dans B pour chaque élément de A
+   - Teste 4 stratégies de mouvement :
+     * **100** : Rotation normale (ra + rb)
+     * **200** : Rotation inverse (rra + rrb)
+     * **300** : Rotation mixte (ra + rrb)
+     * **400** : Rotation mixte inverse (rra + rb)
+   - Retourne le coût minimal
+
+3. **Finir par trier les 3 derniers éléments de A**
+
+### ÉTAPE 2 : RAPATRIEMENT OPTIMISÉ (ft_second_step)
+
+**Objectif** : Ramener tous les éléments de B vers A dans l'ordre optimal
+
+**Processus** :
+1. **Tant que pile B non vide :**
+   - Prendre le premier élément de B
+   - Calculer où il doit être inséré dans A (target)
+   - Calculer le coût pour l'amener à sa position
+   - Tester les stratégies de rotation (normale vs inverse)
+   - Exécuter la solution optimale
+   - Pousser l'élément vers A
+
+2. **Calcul de la position cible** :
+   - Trouve où insérer l'élément pour maintenir l'ordre croissant
+   - Gère les cas spéciaux (plus grand/plus petit que tous les éléments)
+
+### ÉTAPE 3 : FINALISATION (ft_third_step)
+
+**Objectif** : Positionner le plus petit élément en tête de pile
+
+**Processus** :
+1. Trouver la position du plus petit élément
+2. Calculer s'il est plus efficace de faire des rotations ou des rotations inverses
+3. Effectuer les rotations nécessaires pour amener le plus petit en tête
+
+## 6. OPTIMISATIONS CLÉS
+
+### A. Calcul des Coûts
+- **Simulation des mouvements** : Copie des piles pour tester sans modifier l'original
+- **4 stratégies testées** pour chaque mouvement
+- **Choix automatique** de la stratégie minimale
+
+### B. Codes de Solution (soluce)
+- **100** : Rotation normale des deux piles
+- **200** : Rotation inverse des deux piles  
+- **300** : Rotation normale A + inverse B
+- **400** : Rotation inverse A + normale B
+
+### C. Gestion de la Mémoire
+- Copies temporaires pour les simulations
+- Libération systématique des ressources
+- Évite les fuites mémoire
+
+## 7. EXEMPLE CONCRET
+
+Supposons la pile A initiale : [5, 2, 8, 1, 3]
+
+### Étape 1 - Réduction :
+1. Analyser le coût de chaque élément :
+   - 5 → B : X mouvements
+   - 2 → B : Y mouvements  
+   - 8 → B : Z mouvements (minimal)
+   - etc.
+2. Pousser 8 vers B : [5, 2, 1, 3] | [8]
+3. Continuer jusqu'à A = [2, 1, 3] | B = [8, 5]
+4. Trier A : [1, 2, 3] | B = [8, 5]
+
+### Étape 2 - Rapatriement :
+1. Ramener 8 : calculer où l'insérer dans [1, 2, 3] → position finale
+2. Ramener 5 : calculer où l'insérer → position finale
+3. Résultat : [1, 2, 3, 5, 8] | []
+
+### Étape 3 - Finalisation :
+Si le plus petit n'est pas en tête, le faire remonter.
+
+## 8. COMPLEXITÉ
+
+- **Cas optimal** : O(n) pour des piles déjà triées ou petites
+- **Cas moyen** : O(n²) dû aux calculs de coûts répétés
+- **Optimisations** : Choix intelligent des stratégies de rotation
+
+## 9. POINTS CLÉS DE L'IMPLÉMENTATION
+
+1. **Modularité** : Chaque étape est une fonction séparée
+2. **Simulation** : Tests des mouvements avant exécution réelle
+3. **Flexibilité** : Adaptation automatique selon la taille d'entrée
+4. **Robustesse** : Gestion des cas limites et validation d'entrée
+
+Cette approche garantit un tri efficace avec un nombre minimal d'opérations, particulièrement optimisé pour les contraintes du projet Push Swap de 42.
