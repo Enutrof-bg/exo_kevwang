@@ -143,7 +143,6 @@ int main(int argc, char **argv, char **env)
 	int tmp = dup(0);
 	while (argv[i] && argv[++i])
 	{
-
 		argv = argv +i;
 
 		while (argv[i] && strcmp(argv[i], "|") != 0 && strcmp(argv[i], ";") != 0)
@@ -153,13 +152,10 @@ int main(int argc, char **argv, char **env)
 		ft_print(argv);
 		if (strcmp(argv[0], "cd") == 0)
 			ft_cd(argv, i);
-		else if (i != 0 && (argv[i] == NULL || strcmp(argv[i], ";") == 0))
+		else if (i != 0 &&  strcmp(argv[i], ";") == 0)
 			ft_last(argv, i, env ,tmp);
 		else
 			ft_exec(argv, i, env);
-
 	}
-
-
 	return 0;
 }
