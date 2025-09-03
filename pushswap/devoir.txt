@@ -85,6 +85,11 @@ void	ft_push_b(t_list **lstA, t_list **lstB);
 
 Verifier dans un premier temps si la liste est deja triée de base
 	Ne faire aucune instructions et terminer le programme
+	
+int	ft_if_sorted(t_list *lst, t_list *lst2)
+Creer une fonction qui verifie que lst est trie et lst2 et vide
+	return 
+
 
 Cas ou il y 1, 2 ou 3 valeur:
 	1 valeur  : deja trié, ne rien faire

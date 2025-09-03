@@ -125,7 +125,7 @@ void ft_map(char *str, int size, t_list *node, int i)
 	{
 		ft_add(&node, str[x]);
 		ft_map(str, size, node, i+1);
-		ft_pop(&node);
+		ft_pop(&node);	
 	}
 }
 

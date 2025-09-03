@@ -7,7 +7,7 @@ Push Swap est un projet qui consiste à trier une pile d'entiers en utilisant un
 ## 2. STRUCTURE DES DONNÉES
 
 ### Structure de liste chaînée doublement liée :
-```c
+
 typedef struct s_list
 {
     int             content;     // Valeur de l'élément
@@ -17,7 +17,7 @@ typedef struct s_list
     struct s_list   *prev;       // Élément précédent
     struct s_list   *next;       // Élément suivant
 } t_list;
-```
+
 
 ## 3. OPÉRATIONS DISPONIBLES
 
@@ -31,9 +31,9 @@ typedef struct s_list
 ## 4. ALGORITHME PRINCIPAL - ANALYSE ÉTAPE PAR ÉTAPE
 
 ### PHASE 1 : VALIDATION ET PRÉPARATION
-```
+
 main() → Validation des arguments → Création de la pile A
-```
+
 
 ### PHASE 2 : STRATÉGIE DE TRI SELON LA TAILLE
 
