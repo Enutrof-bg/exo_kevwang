@@ -97,8 +97,8 @@ void ft_map(char **tab, int size, int i)
 	{
 		if (ft_check(tab, size) == 1)
 		{
-			ft_print(tab);
-			// ft_print_2(tab, size);
+			// ft_print(tab);
+			ft_print_2(tab, size);
 		}
 		return ;
 	}
