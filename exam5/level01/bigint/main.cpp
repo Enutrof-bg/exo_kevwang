@@ -14,35 +14,35 @@ int main(void)
 
 	std::cout << "a + b = " << a + b << std::endl;
 	std::cout << "a + c = " << a + c << std::endl;
-	std::cout << "(c += a) = " << (c += a) << std::endl;
+	// std::cout << "(c += a) = " << (c += a) << std::endl;
 
-	std::cout << "b = " << b << std::endl;
-	std::cout << "++b = " << ++b << std::endl;
-	std::cout << "b++ = " << b++ << std::endl;
+	// std::cout << "b = " << b << std::endl;
+	// std::cout << "++b = " << ++b << std::endl;
+	// std::cout << "b++ = " << b++ << std::endl;
 
-	// b = 23, b << 10 -> 23000000000 + 42 = 23000000042
-	std::cout << "(b << 10) + 42 = " << ((b << 10) + 42) << std::endl;
-	std::cout << "(d <<= 4) = " << (d <<= 4) << ", d: " << d << std::endl;
-	std::cout << "(d >>= 2) = " << (d >>= (const bigint)2) << ", d: " << d << std::endl;
+	// // b = 23, b << 10 -> 23000000000 + 42 = 23000000042
+	// std::cout << "(b << 10) + 42 = " << ((b << 10) + 42) << std::endl;
+	// std::cout << "(d <<= 4) = " << (d <<= 4) << ", d: " << d << std::endl;
+	// std::cout << "(d >>= 2) = " << (d >>= (const bigint)2) << ", d: " << d << std::endl;
 
-	std::cout << "a = " << a << std::endl; // a = 42
-	std::cout << "d = " << d << std::endl; // d = 5348
+	// std::cout << "a = " << a << std::endl; // a = 42
+	// std::cout << "d = " << d << std::endl; // d = 5348
 
-	std::cout << "(d < a) = " << (d < a) << std::endl; // (d < a) = 0
-	std::cout << "(d > a) = " << (d > a) << std::endl; // (d > a) = 1
-	std::cout << "(d == d) = " << (d == d) << std::endl; // (d == d) = 1
-	std::cout << "(d != a) = " << (d != a) << std::endl; // (d != a) = 1
-	std::cout << "(d <= a) = " << (d <= a) << std::endl; // (d <= a) = 0
-	std::cout << "(d >= a) = " << (d >= a) << std::endl; // (d >= a) = 1
+	// std::cout << "(d < a) = " << (d < a) << std::endl; // (d < a) = 0
+	// std::cout << "(d > a) = " << (d > a) << std::endl; // (d > a) = 1
+	// std::cout << "(d == d) = " << (d == d) << std::endl; // (d == d) = 1
+	// std::cout << "(d != a) = " << (d != a) << std::endl; // (d != a) = 1
+	// std::cout << "(d <= a) = " << (d <= a) << std::endl; // (d <= a) = 0
+	// std::cout << "(d >= a) = " << (d >= a) << std::endl; // (d >= a) = 1
 
-	// extra
-	bigint x(12345678); bigint y(5);
-	std::cout << "(x << y) = " << (x << y) << ", x: " << x << ", y: " << y << std::endl;
-	std::cout << "(x >>= y) = " << (x >>= y) << ", x: " << x << ", y: " << y << std::endl;
-	std::cout << "(x >= y) = " << (x >= y) << ", x: " << x << ", y: " << y << std::endl;
+	// // extra
+	// bigint x(12345678); bigint y(5);
+	// std::cout << "(x << y) = " << (x << y) << ", x: " << x << ", y: " << y << std::endl;
+	// std::cout << "(x >>= y) = " << (x >>= y) << ", x: " << x << ", y: " << y << std::endl;
+	// std::cout << "(x >= y) = " << (x >= y) << ", x: " << x << ", y: " << y << std::endl;
 
-	std::cout << "x= " << (x <<= 5) << ", y= " << (y <<= 12) << std::endl;
-	std::cout << "(x >= y) = " << (x >= y) << ", x: " << x << ", y: " << y << std::endl;
+	// std::cout << "x= " << (x <<= 5) << ", y= " << (y <<= 12) << std::endl;
+	// std::cout << "(x >= y) = " << (x >= y) << ", x: " << x << ", y: " << y << std::endl;
 
 	return (0);
 }

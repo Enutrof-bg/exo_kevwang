@@ -34,7 +34,7 @@ int &vect2::operator[](int index)
 	return (x1);
 }
 
-const int &vect2::operator[](int index) const
+const int vect2::operator[](int index) const
 {
 	if (index == 0)
 		return (x1);
@@ -108,6 +108,8 @@ vect2 vect2::operator*(const vect2 &other) const
 	temp.x1 = temp.x1 * other.x1;
 	temp.x2 = temp.x2 * other.x2;
 	return temp;
+
+	// return (vect2(other2));
 }
 
 vect2 vect2::operator-(const vect2 &other) const

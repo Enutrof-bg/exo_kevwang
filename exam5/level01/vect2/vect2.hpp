@@ -20,7 +20,7 @@ public:
 	int getx2() const;
 
 	int &operator[](int index);
-	const int &operator[](int index) const;
+	const int operator[](int index) const;
 
 	vect2 operator++(void);
 	vect2 operator++(int);
