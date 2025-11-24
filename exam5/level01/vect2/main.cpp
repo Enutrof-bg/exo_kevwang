@@ -1,4 +1,4 @@
-#include "vect2.hpp"
+#include "vect22.hpp"
 
 int main()
 {
@@ -13,8 +13,11 @@ int main()
     std::cout << "v3: " << v3 << std::endl;
     std::cout << "v4: " << v4 << std::endl;
     std::cout << v4++ << std::endl; // 2, 3
+	 std::cout << "v4: " << v4 << std::endl;
     std::cout << ++v4 << std::endl; // 3, 4
+	 std::cout << "v4: " << v4 << std::endl;
     std::cout << v4-- << std::endl; // 2, 3
+	 std::cout << "v4: " << v4 << std::endl;
     std::cout << --v4 << std::endl; // 1, 2
 	std::cout << "v4: " << v4 << std::endl;
     v2 += v3; // 2, 4

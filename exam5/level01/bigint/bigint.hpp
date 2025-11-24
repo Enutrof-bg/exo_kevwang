@@ -21,6 +21,30 @@ public:
 	std::string getNum() const;
 
 	bigint operator+(const bigint &a) const;
+
+	bigint &operator+=(const bigint &a);
+
+	bigint operator++();
+	bigint operator++(int);
+
+	bigint operator<<(unsigned int n);
+	bigint &operator<<=(unsigned int n);
+
+	bigint operator>>(unsigned int n);
+	bigint &operator>>=(unsigned int n);
+
+
+	bigint &operator>>=(const bigint &other);
+	bigint operator>>(const bigint &other);
+	bigint &operator<<=(const bigint &other);
+	bigint operator<<(const bigint &other);
+
+	bool operator<(const bigint &other);
+	bool operator>(const bigint &other);
+	bool operator<=(const bigint &other);
+	bool operator>=(const bigint &other);
+	bool operator==(const bigint &other);
+	bool operator!=(const bigint &other);
 };
 
 std::ostream &operator<<(std::ostream &out, const bigint &bigint);
