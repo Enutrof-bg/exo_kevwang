@@ -10,9 +10,15 @@ int main()
 {
     struct timeval start, end;
 
+    // start.tv_sec;
+    // start.tv_usec;
+
     gettimeofday(&start, NULL); // Get the current time before sleeping
+    printf("sec:%ld usec:%ld\n", start.tv_sec, start.tv_usec);
+
     usleep(500000);  // Expected sleep: 500 milliseconds (0.5 seconds)
     gettimeofday(&end, NULL);  // Get the time after sleeping
+     printf("sec:%ld usec:%ld\n", end.tv_sec, end.tv_usec);
 
     long seconds = end.tv_sec - start.tv_sec;
     long microseconds = end.tv_usec - start.tv_usec;
