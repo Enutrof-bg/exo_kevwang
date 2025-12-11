@@ -1,0 +1,27 @@
+Nom de l'exercice: rip
+Fichiers attendus: *.c *.h
+Fonctions autorisées: puts, write
+--------------------------------------------------------------------------------
+Écrivez un programme qui prendra en argument une chaîne contenant uniquement des parenthèses.
+Si les parenthèses sont déséquilibrées (par exemple "())"), votre programme devra retirer le
+nombre minimum de parenthèses pour que l'expression soit équilibrée.
+Par "retirer", on entend remplacer par des espaces.
+Vous afficherez toutes les solutions (il peut y en avoir plus d'une).
+L'ordre des solutions n'est pas important.
+Par exemple, cela devrait fonctionner :
+(Pour des raisons de lisibilité, le '_' signifie espace et les espaces sont pour la lisibilité uniquement.)
+$> ./rip '( ( )' | cat -e
+_ ( ) $
+( _ ) $
+$> ./rip '( ( ( ) ( ) ( ) ) ( ) )' | cat -e
+( ( ( ) ( ) ( ) ) ( ) ) $
+$> ./rip '( ) ( ) ) ( )' | cat -e
+( ) ( ) _ ( ) $
+( ) ( _ ) ( ) $
+( _ ( ) ) ( ) $
+$> ./rip '( ( ) ( ( ) (' | cat -e
+( ( ) _ _ ) _ $
+( _ ) ( _ ) _ $
+( _ ) _ ( ) _ $
+_ ( ) ( _ ) _ $
+_ ( ) _ ( ) _ $

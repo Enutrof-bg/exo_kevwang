@@ -1,0 +1,61 @@
+Fonctions autorisees: puts, write, malloc, free, (je sais plus mais ca suffit normalement)
+
+Leetcode 46 Permutations similaire
+
+affichez toutes les combinaisons possibles et affichez dans l'ordre alphabetique
+(le grademe testait que avec des lettres)
+
+un argument avec des carateres en doublons ne sera pas a géré(ex:abccd ne sera pas testé)
+
+
+
+
+Exemples bons:
+f6r12s16% ./a.out a | cat -e
+a$
+
+f6r12s16% ./a.out ab | cat -e
+ab$
+ba$
+
+f6r12s16% ./a.out abc | cat -e
+abc$
+acb$
+bac$
+bca$
+cab$
+cba$
+
+f6r12s16% ./a.out cba | cat -e
+abc$
+acb$
+bac$
+bca$
+cab$
+cba$
+
+f6r12s16% ./a.out abcd | cat -e
+abcd$
+abdc$
+acbd$
+acdb$
+adbc$
+adcb$
+bacd$
+badc$
+bcad$
+bcda$
+bdac$
+bdca$
+cabd$
+cadb$
+cbad$
+cbda$
+cdab$
+cdba$
+dabc$
+dacb$
+dbac$
+dbca$
+dcab$
+dcba$
