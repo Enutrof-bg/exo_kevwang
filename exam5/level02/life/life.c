@@ -24,7 +24,7 @@ void ft_init(t_game *game, char **argv)
 	game->j = 0;
 	game->draw = 0;
 
-	game->alive = '0';
+	game->alive = 'O';
 	game->dead = ' ';
 	game->width = atoi(argv[1]);
 	game->height = atoi(argv[2]);
