@@ -8,7 +8,7 @@
 //ft_print : Affiche tous les caracteres du tableau
 //Parametres:
 //	- tab: tableau d'indices representant la permutation
-//	- str: chaîne de caracteres d'origine
+//	- str: chaine de caracteres d'origine
 //	- size: taille du tableau
 //
 //Affiche chaque caractere correspondant aux indices du tableau
@@ -57,8 +57,8 @@ int ft_check(int *tab, int size)
 
 //ft_map : Genere recursivement toute les permutation
 //Parametre:
-//	- str: la chaîne de caracteres d'origine
-//	- size: la longueur de la chaîne
+//	- str: la chaine de caracteres d'origine
+//	- size: la longueur de la chaine
 //	- tab: tableau d'indices en cours de construction
 //	- i: l'index actuel (profondeur de recursion)
 //
@@ -94,16 +94,14 @@ void ft_map(char *str, int size, int *tab, int i)
 		
 		//rrecursion pour la position suivante
 		ft_map(str, size, tab, i + 1);
-		
-		//pas besoin de backtracking explicite car on ecrase la valeur
-		//a la prochaine iteration ou a la sortie de la recursion
+
 	}
 }
 
-//ft_order : Trie la chaîne de caracteres par ordre croissant
+//ft_order : Trie la chaine de caracteres par ordre croissant
 //parametres:
-//	- str: la chaîne a trier
-//retour: la chaîne triee
+//	- str: la chaine a trier
+//retour: la chaine triee
 //
 //utilise l'algorithme du tri a bulles (bubble sort)
 //ceci garantit que les permutations seront affichees dans l'ordre lexicographique
@@ -135,7 +133,7 @@ char *ft_order(char *str)
 }
 
 //le programme:
-//	1. trie la chaîne d'entree par ordre alphabetique
+//	1. trie la chaine d'entree par ordre alphabetique
 //	2. genere toutes les permutations possibles via un tableau d'indices
 //	3. affiche uniquement les permutations uniques (sans doublons d'indices)
 //
@@ -164,7 +162,7 @@ int main(int argc, char **argv)
 			i++;
 		}
 		
-		//trier la chaîne d'abord (pour ordre alphabetique)
+		//trier la chaine d'abord (pour ordre alphabetique)
 		argv[1] = ft_order(argv[1]);
 		
 		//generer toutes les permutations

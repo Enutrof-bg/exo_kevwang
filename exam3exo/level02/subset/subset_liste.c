@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-//structure de liste chaînee pour stocker dynamiquement les nombres du sous-ensemble actuel
+//structure de liste chainee pour stocker dynamiquement les nombres du sous-ensemble actuel
 typedef struct s_list
 {
 	int val;               //la valeur du nœud
@@ -23,7 +23,7 @@ t_list *ft_lst(int val)
 	return new;
 }
 
-//ft_add - ajoute un element À LA FIN de la liste chaînee
+//ft_add - ajoute un element À LA FIN de la liste chainee
 //lst: double pointeur vers le debut de la liste
 //val: la valeur à ajouter
 //Note: utilise un pointeur temporaire pour garder la tête de liste
@@ -145,7 +145,7 @@ int ft_count(t_list *lst)
 //
 //result: La valeur cible à atteindre
 //tab: Tableau contenant tous les nombres disponibles
-//node: Liste chaînee representant le sous-ensemble actuel
+//node: Liste chainee representant le sous-ensemble actuel
 //i: Index actuel dans le tableau (position de decision)
 //size: Taille totale du tableau
 //
