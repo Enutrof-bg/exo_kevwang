@@ -1,4 +1,4 @@
-Fonctions autorisees: malloc, free, printf, (sah jesaisplus)
+Fonctions autorisees: malloc, free, printf, (jesaisplus)
 
 prend une taille en argument
 et donnez toutes les combinaisons des positions des dames possibles

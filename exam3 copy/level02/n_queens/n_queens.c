@@ -130,8 +130,6 @@ void ft_print(char **tab, int size)
 }
 
 // Fonction récursive qui essaie de placer les reines
-// ATTENTION: Cette version place les reines par COLONNE, pas par ligne
-// 
 // Algorithme:
 //   - i représente la colonne courante (de 0 à size-1)
 //   - Pour chaque colonne, on essaie de placer une reine sur chaque ligne
@@ -198,8 +196,6 @@ int main(int argc, char **argv)
 		// Lance l'algorithme de résolution
 		// On commence par la colonne 0
 		ft_map(tab, 0, size);
-
 	}
-	
 	return (0);
 }
