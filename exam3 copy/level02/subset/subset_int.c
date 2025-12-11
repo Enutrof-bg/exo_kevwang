@@ -1,25 +1,14 @@
-/*
- * POWERSET - Programme pour trouver tous les sous-ensembles dont la somme égale une valeur cible
- * 
- * VERSION AVEC TABLEAU D'INT
- * 
- * Principe : Utilise le BACKTRACKING (exploration de toutes les possibilités)
- * Pour chaque nombre, on a 2 choix : le prendre OU ne pas le prendre
- * 
- * Exemple : ./powerset 3 1 0 2
- * - Cherche tous les sous-ensembles de [1, 0, 2] dont la somme = 3
- * - Résultats : [3], [0, 3], [1, 2], [1, 0, 2]
- */
 
-#include "h.h"
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
 
-/*
- * ft_print - Affiche tous les éléments du tableau séparés par des espaces
- * @subset: Tableau contenant les éléments du sous-ensemble actuel
- * @count: Nombre d'éléments dans le sous-ensemble
- * 
- * Format: "1 2 3\n" (espace entre chaque nombre, retour à la ligne à la fin)
- */
+// ft_print - Affiche tous les éléments du tableau séparés par des espaces
+// subset: Tableau contenant les éléments du sous-ensemble actuel
+// count: Nombre d'éléments dans le sous-ensemble
+// 
+// Format: "1 2 3\n" (espace entre chaque nombre, retour à la ligne à la fin)
+// 
 void ft_print(int *subset, int count)
 {
 	if (count > 0)
@@ -38,13 +27,12 @@ void ft_print(int *subset, int count)
 	}
 }
 
-/*
- * ft_count - Calcule la SOMME de tous les éléments du tableau
- * @subset: Tableau contenant les éléments
- * @count: Nombre d'éléments dans le tableau
- * 
- * Return: La somme totale
- */
+// ft_count - Calcule la SOMME de tous les éléments du tableau
+//  @subset: Tableau contenant les éléments
+//  @count: Nombre d'éléments dans le tableau
+//  
+//  Return: La somme totale
+//  
 int ft_count(int *subset, int count)
 {
 	int result = 0;
@@ -59,54 +47,32 @@ int ft_count(int *subset, int count)
 	return result;
 }
 
-/*
- * ft_map - FONCTION RÉCURSIVE DE BACKTRACKING
- * 
- * @result: La valeur cible à atteindre
- * @tab: Tableau contenant tous les nombres disponibles
- * @subset: Tableau pour stocker le sous-ensemble actuel
- * @count: Nombre d'éléments actuellement dans subset
- * @i: Index actuel dans le tableau tab (position de décision)
- * @size: Taille totale du tableau tab
- * 
- * PRINCIPE DU BACKTRACKING:
- * 1. CAS DE BASE: Si on a traité tous les nombres (i == size)
- *    - Vérifier si la somme du sous-ensemble actuel == résultat cible
- *    - Si oui, afficher le sous-ensemble
- * 
- * 2. CAS RÉCURSIF: Pour chaque nombre à l'index i, on a 2 choix:
- *    
- *    CHOIX 1: PRENDRE le nombre tab[i]
- *    - Ajouter tab[i] au tableau subset à la position count
- *    - Appel récursif pour traiter le nombre suivant (i+1) avec count+1
- *    - Pas besoin de retirer explicitement (backtrack automatique)
- *    
- *    CHOIX 2: NE PAS PRENDRE le nombre tab[i]
- *    - Appel récursif pour traiter le nombre suivant (i+1)
- *    - Sans modifier le tableau subset ni count
- * 
- * Exemple visuel avec [1, 2] pour trouver somme = 3:
- * 
- *                      [] count=0
- *                    /              \
- *              prendre 1          ignorer 1
- *              [1] count=1        [] count=0
- *               /      \            /        \
- *         +2        -2         +2          -2
- *      [1,2]      [1]         [2]          []
- *      count=2   count=1    count=1     count=0
- *         ✓         ✗          ✗           ✗
- *      (somme=3)
- * 
- * AVANTAGES de la version tableau:
- * - Plus simple: pas de malloc/free pour chaque élément
- * - Plus rapide: accès direct par indice
- * - Moins de code: pas de gestion de liste chaînée
- * - Backtracking implicite: on ne modifie pas le tableau en descendant dans l'autre branche
- */
+// ft_map - FONCTION RÉCURSIVE DE BACKTRACKING
+// result: La valeur cible à atteindre
+// tab: Tableau contenant tous les nombres disponibles
+// subset: Tableau pour stocker le sous-ensemble actuel
+// count: Nombre d'éléments actuellement dans subset
+// i: Index actuel dans le tableau tab (position de décision)
+// size: Taille totale du tableau tab
+// 
+// PRINCIPE DU BACKTRACKING:
+// 1. CAS DE BASE: Si on a traité tous les nombres (i == size)
+//    - Vérifier si la somme du sous-ensemble actuel == résultat cible
+//    - Si oui, afficher le sous-ensemble
+// 
+// 2. CAS RÉCURSIF: Pour chaque nombre à l'index i, on a 2 choix:
+//    
+//    CHOIX 1: PRENDRE le nombre tab[i]
+//    - Ajouter tab[i] au tableau subset à la position count
+//    - Appel récursif pour traiter le nombre suivant (i+1) avec count+1
+//    - Pas besoin de retirer explicitement (backtrack automatique)
+//    
+//    CHOIX 2: NE PAS PRENDRE le nombre tab[i]
+//    - Appel récursif pour traiter le nombre suivant (i+1)
+//    - Sans modifier le tableau subset ni count
 void ft_map(int result, int *tab, int *subset, int count, int i, int size)
 {
-	// CAS DE BASE: On a parcouru tous les nombres
+	//On a parcouru tous les nombres
 	if (i == size)
 	{
 		// Si la somme du sous-ensemble actuel égale la cible, on l'affiche
@@ -125,24 +91,18 @@ void ft_map(int result, int *tab, int *subset, int count, int i, int size)
 	ft_map(result, tab, subset, count, i + 1, size);  // Continuer sans l'ajouter
 }
 
-/*
- * main - Point d'entrée du programme
- * 
- * Usage: ./powerset <cible> <nombre1> <nombre2> ... <nombreN>
- * Exemple: ./powerset 5 1 2 3 4 5
- * 
- * Processus:
- * 1. Lire la cible (argv[1])
- * 2. Lire tous les nombres dans un tableau (argv[2] à argv[argc-1])
- * 3. Allouer un tableau pour stocker les sous-ensembles temporaires
- * 4. Lancer le backtracking avec ft_map
- */
+// Usage: ./powerset <cible> <nombre1> <nombre2> ... <nombreN>
+// Exemple: ./powerset 5 1 2 3 4 5
+// 
+// Processus:
+// 1. Lire la cible (argv[1])
+// 2. Lire tous les nombres dans un tableau (argv[2] à argv[argc-1])
+// 3. Allouer un tableau pour stocker les sous-ensembles temporaires
+// 4. Lancer le backtracking avec ft_map
 int main(int argc, char **argv)
 {
-	// Vérifier qu'on a au moins un argument (la cible)
 	if (argc >= 2)
 	{
-		// Convertir le premier argument en nombre (la cible)
 		int result = atoi(argv[1]);
 		
 		// Calculer le nombre d'éléments disponibles
@@ -171,10 +131,6 @@ int main(int argc, char **argv)
 		// - 0: index initial (commence au premier nombre)
 		// - nb_elements: taille totale
 		ft_map(result, tab, subset, 0, 0, nb_elements);
-		
-		// Libérer la mémoire
-		free(tab);
-		free(subset);
 	}
 	
 	return 0;
