@@ -7,9 +7,9 @@
 
 // Vérifie si une reine en position (i, j) est en conflit sur les diagonales
 // Paramètres:
-//   - tab: le plateau de jeu
-//   - i, j: position de la reine à vérifier
-//   - size: taille du plateau
+//	- tab: le plateau de jeu
+//	- i, j: position de la reine à vérifier
+//	- size: taille du plateau
 // Retour: 1 si OK, 0 si conflit détecté
 int ft_check_diagonale(char **tab, int i, int j, int size)
 {
@@ -74,15 +74,14 @@ int ft_check_ligne(char **tab, int i, int j)
 // Vérifie si toutes les reines sur le plateau sont valides
 // (pas de conflits horizontaux, verticaux ou diagonaux)
 // Paramètres:
-//   - tab: le plateau de jeu
-//   - size: taille du plateau
+//	- tab: le plateau de jeu
+//	- size: taille du plateau
 // Retour: 1 si la configuration est valide, 0 sinon
 int ft_check(char **tab, int size)
 {
 	int i = 0;
 	int j = 0;
 	
-	// On parcourt tout le plateau
 	while (tab[i])
 	{
 		while (tab[i][j])
@@ -107,8 +106,8 @@ int ft_check(char **tab, int size)
 // Affiche la solution trouvée
 // Pour chaque ligne, on affiche le numéro de colonne où se trouve la reine
 // Paramètres:
-//   - tab: le plateau de jeu
-//   - size: taille du plateau
+//	- tab: le plateau de jeu
+//	- size: taille du plateau
 void ft_print(char **tab, int size)
 {
 	int i = 0;
@@ -135,15 +134,15 @@ void ft_print(char **tab, int size)
 
 // Fonction récursive qui essaie de placer les reines
 // Algorithme:
-//   - i représente la colonne courante (de 0 à size-1)
-//   - Pour chaque colonne, on essaie de placer une reine sur chaque ligne
-//   - On passe récursivement à la colonne suivante
-//   - À la fin (i == size), on vérifie si c'est une solution valide
+//	- i représente la colonne courante (de 0 à size-1)
+//	- Pour chaque colonne, on essaie de placer une reine sur chaque ligne
+//	- On passe récursivement à la colonne suivante
+//	- À la fin (i == size), on vérifie si c'est une solution valide
 // 
 // Paramètres:
-//   - tab: le plateau de jeu
-//   - i: colonne actuelle où placer une reine
-//   - size: taille du plateau
+//	- tab: le plateau de jeu
+//	- i: colonne actuelle où placer une reine
+//	- size: taille du plateau
 void ft_map(char **tab, int i, int size)
 {
 	// Cas de base: on a placé une reine dans chaque colonne
