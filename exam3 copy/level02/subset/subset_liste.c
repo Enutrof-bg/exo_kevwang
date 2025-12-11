@@ -1,15 +1,7 @@
-/*
- * POWERSET - Programme pour trouver tous les sous-ensembles dont la somme égale une valeur cible
- * 
- * Principe : Utilise le BACKTRACKING (exploration de toutes les possibilités)
- * Pour chaque nombre, on a 2 choix : le prendre OU ne pas le prendre
- * 
- * Exemple : ./powerset 3 1 0 2
- * - Cherche tous les sous-ensembles de [1, 0, 2] dont la somme = 3
- * - Résultats : [3], [0, 3], [1, 2], [1, 0, 2]
- */
 
-#include "h.h"
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
 
 // Structure de liste chaînée pour stocker dynamiquement les nombres du sous-ensemble actuel
 typedef struct s_list
@@ -18,12 +10,9 @@ typedef struct s_list
 	struct s_list *next;   // Pointeur vers le nœud suivant
 } t_list;
 
-/*
- * ft_lst - Crée un nouveau nœud de liste
- * @val: La valeur à stocker dans le nœud
- * 
- * Return: Pointeur vers le nouveau nœud alloué
- */
+// ft_lst - Crée un nouveau nœud de liste
+// val: La valeur à stocker dans le nœud
+// Return: Pointeur vers le nouveau nœud alloué
 t_list *ft_lst(int val)
 {
 	t_list *new = malloc(sizeof(t_list));
@@ -34,13 +23,10 @@ t_list *ft_lst(int val)
 	return new;
 }
 
-/*
- * ft_add - Ajoute un élément À LA FIN de la liste chaînée
- * @lst: Double pointeur vers le début de la liste
- * @val: La valeur à ajouter
- * 
- * Note: Utilise un pointeur temporaire pour garder la tête de liste
- */
+// ft_add - Ajoute un élément À LA FIN de la liste chaînée
+// lst: Double pointeur vers le début de la liste
+// val: La valeur à ajouter
+// Note: Utilise un pointeur temporaire pour garder la tête de liste
 void ft_add(t_list **lst, int val)
 {
 	// Cas 1: La liste est vide, on crée le premier élément
@@ -66,12 +52,9 @@ void ft_add(t_list **lst, int val)
 	(*lst) = temp;
 }
 
-/*
- * ft_pop - Retire le DERNIER élément de la liste
- * @lst: Double pointeur vers le début de la liste
- * 
- * Important: Utilisé dans le backtracking pour "défaire" un choix
- */
+// ft_pop - Retire le DERNIER élément de la liste
+// lst: Double pointeur vers le début de la liste
+// Important: Utilisé dans le backtracking pour "défaire" un choix
 void ft_pop(t_list **lst)
 {
 	if (*lst)
@@ -103,12 +86,9 @@ void ft_pop(t_list **lst)
 	}
 }
 
-/*
- * ft_size - Calcule la taille de la liste
- * @lst: Pointeur vers le début de la liste
- * 
- * Return: Nombre d'éléments dans la liste
- */
+// ft_size - Calcule la taille de la liste
+// lst: Pointeur vers le début de la liste
+// Return: Nombre d'éléments dans la liste
 int ft_size(t_list *lst)
 {
 	int size = 0;
@@ -122,12 +102,9 @@ int ft_size(t_list *lst)
 	return size;
 }
 
-/*
- * ft_print - Affiche tous les éléments de la liste séparés par des espaces
- * @lst: Pointeur vers le début de la liste
- * 
- * Format: "1 2 3\n" (espace entre chaque nombre, retour à la ligne à la fin)
- */
+// ft_print - Affiche tous les éléments de la liste séparés par des espaces
+// lst: Pointeur vers le début de la liste
+// Format: "1 2 3\n" (espace entre chaque nombre, retour à la ligne à la fin)
 void ft_print(t_list *lst)
 {
 	if (lst)
@@ -148,12 +125,9 @@ void ft_print(t_list *lst)
 	}
 }
 
-/*
- * ft_count - Calcule la SOMME de tous les éléments de la liste
- * @lst: Pointeur vers le début de la liste
- * 
- * Return: La somme totale
- */
+// ft_count - Calcule la SOMME de tous les éléments de la liste
+// lst: Pointeur vers le début de la liste
+// Return: La somme totale
 int ft_count(t_list *lst)
 {
 	int result = 0;
@@ -167,43 +141,29 @@ int ft_count(t_list *lst)
 	return result;
 }
 
-/*
- * ft_map - FONCTION RÉCURSIVE DE BACKTRACKING
- * 
- * @result: La valeur cible à atteindre
- * @tab: Tableau contenant tous les nombres disponibles
- * @node: Liste chaînée représentant le sous-ensemble actuel
- * @i: Index actuel dans le tableau (position de décision)
- * @size: Taille totale du tableau
- * 
- * PRINCIPE DU BACKTRACKING:
- * 1. CAS DE BASE: Si on a traité tous les nombres (i == size)
- *    - Vérifier si la somme du sous-ensemble actuel == résultat cible
- *    - Si oui, afficher le sous-ensemble
- * 
- * 2. CAS RÉCURSIF: Pour chaque nombre à l'index i, on a 2 choix:
- *    
- *    CHOIX 1: PRENDRE le nombre tab[i]
- *    - Ajouter tab[i] à la liste (ft_add)
- *    - Appel récursif pour traiter le nombre suivant (i+1)
- *    - Retirer tab[i] de la liste (ft_pop) <- BACKTRACK!
- *    
- *    CHOIX 2: NE PAS PRENDRE le nombre tab[i]
- *    - Appel récursif pour traiter le nombre suivant (i+1)
- *    - Sans modifier la liste
- * 
- * Exemple visuel avec [1, 2] pour trouver somme = 3:
- * 
- *                      []
- *                    /    \
- *              prendre 1  ignorer 1
- *                 [1]        []
- *               /    \      /    \
- *         +2      -2    +2     -2
- *        [1,2]   [1]   [2]     []
- *         ✓       ✗     ✗      ✗
- *      (somme=3)
- */
+// ft_map - FONCTION RÉCURSIVE DE BACKTRACKING
+// 
+// result: La valeur cible à atteindre
+// tab: Tableau contenant tous les nombres disponibles
+// node: Liste chaînée représentant le sous-ensemble actuel
+// i: Index actuel dans le tableau (position de décision)
+// size: Taille totale du tableau
+// 
+// PRINCIPE DU BACKTRACKING:
+// 1. CAS DE BASE: Si on a traité tous les nombres (i == size)
+//    - Vérifier si la somme du sous-ensemble actuel == résultat cible
+//    - Si oui, afficher le sous-ensemble
+// 
+// 2. CAS RÉCURSIF: Pour chaque nombre à l'index i, on a 2 choix:
+//    
+//    CHOIX 1: PRENDRE le nombre tab[i]
+//    - Ajouter tab[i] à la liste (ft_add)
+//    - Appel récursif pour traiter le nombre suivant (i+1)
+//    - Retirer tab[i] de la liste (ft_pop) <- BACKTRACK!
+//    
+//    CHOIX 2: NE PAS PRENDRE le nombre tab[i]
+//    - Appel récursif pour traiter le nombre suivant (i+1)
+//    - Sans modifier la liste
 void ft_map(int result, int *tab, t_list *node, int i, int size)
 {
 	// CAS DE BASE: On a parcouru tous les nombres
@@ -224,17 +184,12 @@ void ft_map(int result, int *tab, t_list *node, int i, int size)
 	ft_map(result, tab, node, i+1, size);  // Continuer sans l'ajouter
 }
 
-/*
- * main - Point d'entrée du programme
- * 
- * Usage: ./powerset <cible> <nombre1> <nombre2> ... <nombreN>
- * Exemple: ./powerset 5 1 2 3 4 5
- * 
- * Processus:
- * 1. Lire la cible (argv[1])
- * 2. Lire tous les nombres dans un tableau (argv[2] à argv[argc-1])
- * 3. Lancer le backtracking avec ft_map
- */
+// ./powerset <cible> <nombre1> <nombre2> ... <nombreN>
+// Exemple: ./powerset 5 1 2 3 4 5
+// Processus:
+// 1. Lire la cible (argv[1])
+// 2. Lire tous les nombres dans un tableau (argv[2] à argv[argc-1])
+// 3. Lancer le backtracking avec ft_map
 int main(int argc, char **argv)
 {
 	(void)argc;
