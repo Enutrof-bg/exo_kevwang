@@ -1,4 +1,9 @@
-#include "h.h"
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
+#include <fcntl.h>
+
 
 // ft_print : Affiche tous les caractères du tableau
 // Paramètres:

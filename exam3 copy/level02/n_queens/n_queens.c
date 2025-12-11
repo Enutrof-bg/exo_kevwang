@@ -1,4 +1,8 @@
-#include "h.h"
+
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
 
 
 // Vérifie si une reine en position (i, j) est en conflit sur les diagonales
