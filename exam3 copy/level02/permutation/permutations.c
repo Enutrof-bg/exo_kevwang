@@ -1,175 +1,172 @@
 #include "h.h"
 
-typedef struct s_list
+// ft_print : Affiche tous les caractères du tableau
+// Paramètres:
+//   - tab: tableau d'indices représentant la permutation
+//   - str: chaîne de caractères d'origine
+//   - size: taille du tableau
+// 
+// Affiche chaque caractère correspondant aux indices du tableau
+void ft_print(int *tab, char *str, int size)
 {
-	char val;
-	struct s_list *next;
-}t_list;
-
-t_list *ft_lst(char val)
-{
-	t_list *new = malloc(sizeof(t_list));
-	// struct s_list *new = malloc(sizeof(t_list));
-	
-	new->val = val;
-	new->next = NULL;
-
-	return new;
-}
-
-void ft_add(t_list **lst, char val)
-{
-	if (!(*lst))
-	{
-		(*lst) = ft_lst(val);
-		return ;
-	}
-	t_list *temp = *lst;
-	while ((*lst)->next)
-	{
-		(*lst) = (*lst)->next;
-	}
-	(*lst)->next = ft_lst(val);
-	(*lst) = temp;
-}
-
-void ft_pop(t_list **lst)
-{
-	if (*lst)
-	{
-		if (!(*lst)->next)
-		{
-			(*lst) = NULL;
-			return ;
-		}
-		t_list *temp = *lst;
-		t_list *test = *lst;
-
-		test = test->next;
-		while (test->next)
-		{
-			test = test->next;
-			(*lst) = (*lst)->next;
-		}
-		(*lst)->next = NULL;
-		(*lst) = temp;
-	}
-}
-
-int ft_size(t_list *lst)
-{
-	int size = 0;
-	while (lst)
-	{
-		size++;
-		lst = lst->next;
-	}
-	return size;
-}
-
-void ft_print(t_list *lst)
-{
-	if (lst)
-	{
-		int size = ft_size(lst);
-		int i = 0;
-		while (i < size)
-		{
-			write(1, &lst->val, 1);
-			lst = lst->next;
-			i++;
-		}
-		// write(1, &lst->val, 1);
-		write(1, "\n", 1);
-	}
-}
-
-int ft_check(t_list *lst)
-{
-	char str[5000];
 	int i = 0;
-
-	while (lst)
+	
+	// Pour chaque indice dans le tableau
+	while (i < size)
 	{
-		str[i] = lst->val;
+		// Afficher le caractère correspondant à cet indice
+		write(1, &str[tab[i]], 1);
 		i++;
-		lst = lst->next;
 	}
-	str[i] = '\0';
+	write(1, "\n", 1);  // Retour à la ligne
+}
 
+// ft_check : Vérifie qu'il n'y a pas de doublons dans le tableau
+// Paramètres:
+//   - tab: tableau d'indices
+//   - size: taille du tableau
+// Retour: 1 si tous les indices sont uniques, 0 sinon
+// 
+// Cette fonction évite d'afficher les permutations avec des indices répétés
+// (pour éviter les permutations invalides comme [0, 0, 1])
+int ft_check(int *tab, int size)
+{
 	int x = 0;
 	int y = 0;
-	while (x < i)
+	
+	// Vérifier chaque paire d'indices
+	while (x < size)
 	{
-		while (y < i)
+		y = 0;
+		while (y < size)
 		{
-			if (str[y] == str[x] && x != y)
-				return (0);
+			// Si on trouve deux indices identiques à des positions différentes
+			if (tab[y] == tab[x] && x != y)
+				return (0);  // Pas unique, retourner 0
 			y++;
 		}
-		y = 0;
 		x++;
 	}
-	return (1);
+	return (1);  // Tous les indices sont uniques
 }
 
-void ft_map(char *str, int size, t_list *node, int i)
+// ft_map : Génère récursivement toutes les permutations
+// Paramètres:
+//   - str: la chaîne de caractères d'origine
+//   - size: la longueur de la chaîne
+//   - tab: tableau d'indices en cours de construction
+//   - i: l'index actuel (profondeur de récursion)
+// 
+// Algorithme:
+//   1. Si i == size, nous avons une permutation complète
+//      -> Vérifier et afficher si valide
+//   2. Sinon, pour chaque position possible (0 à size-1):
+//      a. Placer cet indice dans tab[i]
+//      b. Appeler récursivement pour la position suivante
+//      c. Nettoyer (backtracking, optionnel ici car on écrase)
+// 
+// Exemple avec "abc" (size=3):
+//   tab[0]=0, recurse → tab[1]=0, recurse → tab[2]=0 → Check fail (doublons)
+//   tab[0]=0, recurse → tab[1]=0, recurse → tab[2]=1 → Check fail (doublons)
+//   tab[0]=0, recurse → tab[1]=1, recurse → tab[2]=2 → Affiche "abc"
+//   etc...
+void ft_map(char *str, int size, int *tab, int i)
 {
+	// Cas de base: permutation complète
 	if (i == size)
 	{
-		if (ft_check(node) == 1)
-			ft_print(node);
+		// Vérifier qu'il n'y a pas de doublons d'indices avant d'afficher
+		if (ft_check(tab, size) == 1)
+			ft_print(tab, str, size);
 		return ;
 	}
+	
+	// Pour chaque indice possible (de 0 à size-1)
 	for (int x = 0; x < size; x++)
 	{
-		ft_add(&node, str[x]);
-		ft_map(str, size, node, i+1);
-		ft_pop(&node);	
+		// Placer cet indice à la position i
+		tab[i] = x;
+		
+		// Récursion pour la position suivante
+		ft_map(str, size, tab, i + 1);
+		
+		// Pas besoin de backtracking explicite car on écrase la valeur
+		// à la prochaine itération ou à la sortie de la récursion
 	}
 }
 
+// ft_order : Trie la chaîne de caractères par ordre croissant
+// Paramètres:
+//   - str: la chaîne à trier
+// Retour: la chaîne triée
+// 
+// Utilise l'algorithme du tri à bulles (bubble sort)
+// Ceci garantit que les permutations seront affichées dans l'ordre lexicographique
 char *ft_order(char *str)
 {
 	int i = 0;
 	int j = 0;
 	int len = (int)strlen(str);
 	char temp;
+	
+	// Tri à bulles
 	while (i < len)
 	{
+		j = 0;
 		while (j < len - 1)
 		{
+			// Si le caractère actuel est plus grand que le suivant, échanger
 			if (str[j] > str[j + 1])
 			{
-				temp = str[j+1];
-				str[j+1] = str[j];
+				temp = str[j + 1];
+				str[j + 1] = str[j];
 				str[j] = temp;
 			}
 			j++;
 		}
-		j = 0;
 		i++;
 	}
 	return (str);
 }
 
+// Le programme:
+//   1. Trie la chaîne d'entrée par ordre alphabétique
+//   2. Génère toutes les permutations possibles via un tableau d'indices
+//   3. Affiche uniquement les permutations uniques (sans doublons d'indices)
+// 
+// Exemple:
+//   ./permutations "abc"
+//   Affichera: abc, acb, bac, bca, cab, cba (dans cet ordre)
+// 
+// Avantages de la version avec tableau d'int:
+//   - Plus simple: pas de gestion de malloc/free pour chaque noeud
+//   - Plus rapide: accès direct par indice au lieu de parcourir une liste
+//   - Moins de mémoire: un seul tableau réutilisé au lieu de noeuds multiples
 int main(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
-	t_list *node = NULL;
-	// ft_add(&node, 1);
-	// ft_add(&node, 2);
-	// ft_add(&node, 3);
-	// ft_pop(&node);
-	// ft_pop(&node);
-	// ft_pop(&node);
-	// ft_pop(&node);
-	// ft_print(node);
 	if (argc >= 2)
 	{
+		int size = strlen(argv[1]);
+		
+		// Allocation d'un tableau d'indices (de taille size)
+		int *tab = malloc(sizeof(int) * size);
+		
+		// Initialiser le tableau à 0
+		int i = 0;
+		while (i < size)
+		{
+			tab[i] = 0;
+			i++;
+		}
+		
+		// Trier la chaîne d'abord (pour ordre alphabétique)
 		argv[1] = ft_order(argv[1]);
-		ft_map(argv[1], strlen(argv[1]), node, 0);
+		
+		// Générer toutes les permutations
+		ft_map(argv[1], size, tab, 0);
+		
+		// Libérer la mémoire
+		free(tab);
 	}
-	
+	return (0);
 }
