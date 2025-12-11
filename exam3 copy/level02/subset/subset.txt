@@ -2,8 +2,6 @@ Fonctions autorisees: atoi, printf, malloc, free, memset(je crois), (je sais plu
 
 leetcode 78 Subsets similaire
 
-Conseils: liste chaines et backtracking, NE PAS UTLISEZ LES TABLEAUX DE INT(abomination)
-
 prend en input une valeur cible (argv[1]) et un ensemble de valeur(le reste)
 donnez toutes les combinaisons possibles qui en additionant donne la valeur cible
 
